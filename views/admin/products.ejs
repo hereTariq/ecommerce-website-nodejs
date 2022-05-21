@@ -1,0 +1,51 @@
+<%- include ('../partials/header') %>
+    <%- include ('../partials/navigation') %>
+
+        <main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  m-10 sm:gap-x-24 gap-y-8">
+            <% if (products.length> 0) { %>
+                <% products.forEach(product=> { %>
+
+                    <!-- component -->
+                    <section class="bg-white overflow-hidden rounded-md dark:bg-gray-900 shadow-md w-80 mx-auto">
+                        <div class="container  mx-auto">
+                            <div class=" flex flex-col items-center justify-center w-full max-w-lg mx-auto">
+                                <img class="object-container w-full h-72 xl:h-80" src="/<%= product.image %> "
+                                    alt="T-Shirt">
+                                <h4 class="my-2 text-2xl font-bold text-gray-700 dark:text-gray-200">
+                                    <%= product.title %>
+                                </h4>
+                                <p class="text-indigo-500 text-xl font-semibold">$<%= product.price %>
+                                </p>
+
+                            </div>
+                            <div class="flex justify-around mb-8 mt-4">
+                                <a href="/admin/edit-product/<%= product.id %>?edit=true"
+                                    class="bg-indigo-500 px-6 py-2 rounded text-white hover:bg-white hover:text-indigo-500 hover:ring hover:ring-indigo-500">Edit</a>
+                                <form action="/admin/delete-product" method="post">
+                                    <input type="hidden" name="prodId" value="<%= product.id %> ">
+                                    <button type="submit"
+                                        class="bg-indigo-500 px-6 py-2 rounded text-white  hover:bg-white hover:text-indigo-500 hover:ring hover:ring-indigo-500">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </section>
+
+
+                    <% }) %>
+                        <% } else { %>
+
+                            <h1 class=" text-2xl font-bold col-span-4">You have not Added
+                                any
+                                product
+                                <a href="/admin/add-product" class="text-indigo-500 text-lg hover:underline">click
+                                    here</a>
+                                to
+                                add.
+                            </h1>
+                            <%}%>
+
+
+        </main>
+
+        <%- include ('../partials/footer') %>
