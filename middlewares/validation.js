@@ -6,7 +6,10 @@ exports.signupValidation = [
         .not()
         .isEmpty()
         .withMessage('All fileds are required!')
-        .isAlpha()
+        .isString()
+        .withMessage(
+            'Name should be combination of characters and at least 4 characters.'
+        )
         .isLength({ min: 4 })
         .withMessage(
             'Name should be combination of characters and at least 4 characters.'

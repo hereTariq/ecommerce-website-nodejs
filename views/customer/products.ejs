@@ -1,7 +1,8 @@
 <%- include ('../partials/header') %>
     <%- include ('../partials/navigation') %>
 
-        <main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  m-10 sm:gap-x-24 gap-y-8">
+        <main
+            class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  my-10 sm:gap-x-10 md:gap-x-0 gap-y-8">
             <% if (products.length> 0) { %>
                 <% products.forEach(product=> { %>
 

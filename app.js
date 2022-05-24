@@ -7,6 +7,7 @@ const session = require('express-session');
 const MogoDBStore = require('connect-mongodb-session')(session);
 const compression = require('compression');
 const helmet = require('helmet');
+const morgan = require('morgan');
 const User = require('./models/user');
 require('dotenv').config();
 
@@ -36,8 +37,8 @@ const PORT = process.env.PORT || 3200;
 const app = express();
 app.set('view engine', 'ejs');
 
-app.use(helmet());
-app.use(compression());
+// app.use(helmet());
+// app.use(compression());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(multer({ storage: fileStorage, fileFilter }).single('image'));
@@ -69,7 +70,7 @@ app.use(
 );
 
 app.use(flash());
-
+app.use(morgan('common'));
 app.use((req, res, next) => {
     if (!req.session.user) {
         return next();
