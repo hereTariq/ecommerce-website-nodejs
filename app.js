@@ -7,7 +7,7 @@ const session = require('express-session');
 const MogoDBStore = require('connect-mongodb-session')(session);
 const compression = require('compression');
 const helmet = require('helmet');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const User = require('./models/user');
 require('dotenv').config();
 
