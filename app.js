@@ -16,7 +16,12 @@ const fileStorage = multer.diskStorage({
         cb(null, './public/images/productImages');
     },
     filename: (req, file, cb) => {
-        cb(null, new Date().toISOString() + '-' + file.originalname);
+        cb(
+            null,
+            new Date().toISOString().replace(/:/g, '-') +
+                '-' +
+                file.originalname
+        );
     },
 });
 
@@ -37,8 +42,8 @@ const PORT = process.env.PORT || 3200;
 const app = express();
 app.set('view engine', 'ejs');
 
-// app.use(helmet());
-// app.use(compression());
+app.use(helmet());
+app.use(compression());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(multer({ storage: fileStorage, fileFilter }).single('image'));
@@ -70,7 +75,7 @@ app.use(
 );
 
 app.use(flash());
-app.use(morgan('common'));
+// app.use(morgan('common'));
 app.use((req, res, next) => {
     if (!req.session.user) {
         return next();
@@ -103,6 +108,7 @@ app.use('/admin', require('./routes/admin'));
 mongoose
     .connect(process.env.MONGO_URI)
     .then((result) => {
+        // console.log('mongodb connected');
         app.listen(PORT);
     })
     .catch((err) => {

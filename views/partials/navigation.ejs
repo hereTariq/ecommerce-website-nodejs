@@ -1,5 +1,5 @@
-<header class="bg-indigo-500 flex justify-between items-center p-10 py-4 md:px-14 md:py-6">
-    <a href="/" class="text-xl font-bold ">Shop</a>
+<header class="text-white bg-indigo-500 flex justify-between items-center p-10 py-4 md:px-14 md:py-6">
+    <a href="/" class="text-3xl font-bold ">Shop</a>
     <button id="toogleButton" class="md:hidden outline-none">
         <img src="/images/websiteImages/bars-solid.svg" id="icon" alt="bars" class="w-6 h-7">
     </button>
@@ -7,14 +7,17 @@
         class="z-10 font-mono md:static md:h-0 md:top-0 md:translate-x-0 fixed h-screen bg-indigo-500 left-0 right-0 top-14 transform translate-x-full transition duration-500">
         <ul
             class="flex md:flex-row md:h-0 md:space-y-0 md:space-x-6 md:text-[18px] flex-col items-center h-3/4 justify-center text-xl space-y-4">
-            <li><a href="/" class="<%= path === '/' ? 'text-white' : '' %> ">Home</a></li>
-            <% if (isAuthenticated) { %>
+            <li><a href="/" class="<%= path === '/' ? 'border-2 border rounded-xl px-4 py-1' : '' %> ">Home</a>
+            </li>
+            <% if (locals.isAuthenticated) { %>
                 <li><a href="/admin/add-product"
-                        class="<%= path === '/admin/add-product' ? 'text-white' : ''%>">Add-Product</a></li>
+                        class="<%= path === '/admin/add-product' ? 'border-2 border rounded-xl px-4 py-1' : ''%>">Add-Product</a>
+                </li>
                 <li><a href=" /admin/products"
-                        class="<%= path === '/admin/products' ? 'text-white' : ''%>">Admin-Products</a></li>
+                        class="<%= path === '/admin/products' ? 'border-2 border rounded-xl px-4 py-1' : ''%>">Admin-Products</a>
+                </li>
                 <% } %>
-                    <% if (!isAuthenticated) { %>
+                    <% if (!(locals.isAuthenticated)) { %>
                         <li class=" px-2 rounded hover:ring hover:ring-white">
                             <a href="/auth/login" class="<%= path === '/auth/login' ? 'text-white' : ''%>">Login</a>
                         </li>
