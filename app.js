@@ -108,11 +108,13 @@ app.use('/admin', require('./routes/admin'));
 mongoose
     .connect(process.env.MONGO_URI)
     .then((result) => {
-        // console.log('mongodb connected');
-        app.listen(PORT);
+        console.log('mongodb connected');
+        app.listen(PORT, () =>
+            console.log('server is running on http://localhost:' + PORT)
+        );
     })
     .catch((err) => {
-        console.log(err);
+        console.log(err.message);
     });
 
 // Error handling for 404

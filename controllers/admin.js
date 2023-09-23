@@ -103,10 +103,10 @@ exports.deleteProduct = async (req, res, next) => {
         }
 
         unlink(product.image, (err) => {
-            if (err) next(err);
+            if (err) return next(err);
         });
-        await Product.deleteOne({ _id: prodId });
-        res.redirect('/admin/products');
+        const deletedProduct = await Product.deleteOne({ _id: prodId });
+        return res.redirect('/admin/products');
     } catch (err) {
         next(err);
     }
